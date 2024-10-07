@@ -36,7 +36,7 @@ async function seedUsers() {
       return client.sql`
         INSERT INTO users (id, name, email, password)
         VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        ON CONFLICT (id) DO NOTHING;  // Insert user, ignore if there's a conflict
+        ON CONFLICT (id) DO NOTHING;  -- Insert user, ignore if there's a conflict
       `;
     })
   );
@@ -59,7 +59,7 @@ async function seedInvoices() {
       (invoice) => client.sql`
         INSERT INTO invoices (customer_id, amount, status, date)
         VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
-        ON CONFLICT (id) DO NOTHING;  // Insert invoice, ignore if there's a conflict
+        ON CONFLICT (id) DO NOTHING;  -- Insert invoice, ignore if there's a conflict
       `
     )
   );
@@ -81,7 +81,7 @@ async function seedCustomers() {
       (customer) => client.sql`
         INSERT INTO customers (id, name, email, image_url)
         VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
-        ON CONFLICT (id) DO NOTHING;  // Insert customer, ignore if there's a conflict
+        ON CONFLICT (id) DO NOTHING;  -- Insert customer, ignore if there's a conflict
       `
     )
   );
@@ -101,7 +101,7 @@ async function seedRevenue() {
       (rev) => client.sql`
         INSERT INTO revenue (month, revenue)
         VALUES (${rev.month}, ${rev.revenue})
-        ON CONFLICT (month) DO NOTHING;  // Insert revenue, ignore if there's a conflict
+        ON CONFLICT (month) DO NOTHING;  -- Insert revenue, ignore if there's a conflict
       `
     )
   );
