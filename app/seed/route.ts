@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { db } from '@vercel/postgres';
+import { db, PostgresClient } from '@vercel/postgres';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
-let client;
+let client: PostgresClient;  // Explicit type declaration for the client
 
 async function connectDatabase() {
   const connectionString = process.env.DATABASE_URL;
