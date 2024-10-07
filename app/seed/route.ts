@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { db, PostgresClient } from '@vercel/postgres';
+import { db } from '@vercel/postgres';  // No need to import PostgresClient
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
-let client: PostgresClient;  // Explicit type declaration for the client
+let client: any;  // Use `any` for simplicity
 
 async function connectDatabase() {
   const connectionString = process.env.DATABASE_URL;
@@ -128,7 +128,7 @@ export async function GET() {
     await client.sql`COMMIT`;
 
     return new Response(JSON.stringify({ message: 'Database seeded successfully' }), { status: 200 });
-  } catch (error) {
+  } catch (error: any) {  // You can also define a more specific type if you know it
     await client.sql`ROLLBACK`;
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
